@@ -1,8 +1,6 @@
 import openai
 from openai import OpenAI
 
-openai.api_key = "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"
-
 
 def read_file(file_path):
     """Read the content of a file."""
