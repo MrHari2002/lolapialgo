@@ -16,8 +16,19 @@ def fetch_ative_player():
     """Fetch game stats from the provided URL."""
     try:
         # Bypass SSL verification for HTTPS - use with caution and consider security implications.
-        response = requests.get('https://127.0.0.1:2999/liveclientdata/playerlist', verify=False)
-        return response
+        response = requests.get('https://127.0.0.1:2999/liveclientdata/activeplayer', verify=False)
+        reformatted_data = ""
+        for player in response:
+                        # Extract the required information for each player
+                        player_info = player["championName"] + "Team" +player["team"]+ "IsDead" + str(player["isDead"]) + "RespawnTimer"+  str(player["respawnTimer"])
+                        for item in player.get("items", []):
+                            player_info += item["displayName"]+ ""
+                        player_info += player["summonerSpells"]["summonerSpellOne"]["displayName"]
+                        player_info += player["summonerSpells"]["summonerSpellTwo"]["displayName"]
+                        
+                        # Add the reformatted player information to the list
+                        reformatted_data+=player_info+"\n"
+        return reformatted_data
     except requests.exceptions.RequestException as e:
         print("Request failed:", e)
         return None
@@ -28,8 +39,9 @@ def write_stats_to_file(game_stats):
         file.write(json.dumps(game_stats, indent=4))
         file.write("\n\n New Data")  # Add some space between entries for readability
 
+
 def main():
-    active_player = ""
+    active_player = fetch_ative_player
 
     while True:
         response = fetch_game_stats()
