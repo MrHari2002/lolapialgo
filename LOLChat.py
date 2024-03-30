@@ -1,7 +1,5 @@
 import requests
 from openai import OpenAI
-# get control of our keyboard
-from pynput.keyboard import Listener, Key, Controller
 # time variables
 
 
@@ -57,6 +55,8 @@ def yxcMethod():
     anlysis = chatgpt_analyse(active_player,response)
     print(anlysis)
     return anlysis
+
+yxcMethod()
 
 
 
