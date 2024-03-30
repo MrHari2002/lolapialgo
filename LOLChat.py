@@ -94,6 +94,7 @@ def yxcMethod():
     active_player = fetch_ative_player()
     response = fetch_game_stats()
     anlysis = chatgpt_analyse(active_player,response)
+    print(anlysis)
     return anlysis
 
 with Listener(on_press=press) as listener:
