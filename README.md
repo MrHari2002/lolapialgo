@@ -1,6 +1,8 @@
 # lolapialgo
 
-To make sure your stuff work you need to have open ai subscription
+To make sure your stuff work you need to have open ai subscription.
+
+You would need to set up your open AI in your local environment.
 
 From OpenAI API website
 
